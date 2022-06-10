@@ -1,0 +1,100 @@
+<ParentScreen2>
+  name:"parent_screen_2"
+  toolbar:toolbar
+  md_nav_layout:md_nav_layout
+  child_sm:child_sm
+  act_screen_id:act_screen_id
+  # canvas_widget:canvas_widget
+
+  canvas.before:
+    Color:
+      rgb: [127/255,160/255,189/255]
+    Rectangle:
+      pos: self.pos
+      size: self.size
+  MDToolbar:
+    id: toolbar
+    pos_hint: {"top": 1}
+    elevation: 10
+    title: "What-Sticks-Health"
+    left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+    md_bg_color: .3,.3,.3,1
+    # font_size:root.width * .06
+    # font_size:100
+  MDNavigationLayout:
+    id:md_nav_layout
+
+    ScreenManager:
+      id: child_sm
+      ActivityScreen:
+        name:"act_screen"
+        id:act_screen_id
+        size_hint:1,None
+        height:root.height - root.toolbar.size[1]
+      TableScreen:
+        name:"table_screen"
+    MDNavigationDrawer:
+      id:nav_drawer
+      size_hint:.4,None
+      height:root.height - root.toolbar.size[1]
+      NavMenu:
+
+
+<ActivityScreen@Screen>
+  ScrollView:
+    BoxLayout:
+      orientation:"vertical"
+      size_hint:1,None
+      height:self.minimum_height
+
+      MainBoxLayout:
+
+      ExtraBoxLayout:
+
+
+# <MainBoxLayout>
+#   orientation:"vertical"
+#   # size_hint:None,None
+#   # size:self.ps1_base_width,self.ps1_base_height
+#   Label:
+#     text:"Activity SCreen"
+#   Button:
+#     text:"Button"
+#     on_press:
+#       print('BaseScreenManager:', root.parent.parent.parent.parent)
+#       print('ps1_base_height:', root.parent.parent.parent.parent.ps1_base_height)
+#       # print(app.mycontroller)
+#       # print(app.mycontroller.ps1_base_height)
+
+<ExtraBoxLayout>
+  orientation:"vertical"
+
+<TableScreen@Screen>
+  BoxLayout:
+    orientation:"vertical"
+    Label:
+      text:"Table SCreen"
+    Button:
+      text:"Button"
+
+<NavMenu>
+  spacing:10
+  orientation:"vertical"
+  canvas.before:
+    Color:
+      rgb: [127/255,160/255,189/255]
+    Rectangle:
+      pos: self.pos
+      size: self.size
+  OneLineListItem:
+    text:"Add Activity"
+
+    on_press:
+      root.parent.parent.parent.child_sm.current="act_screen"
+
+  OneLineListItem:
+
+    text:"View Logged Activties"
+    on_press:
+      root.parent.parent.parent.child_sm.current="table_screen"
+  Label:

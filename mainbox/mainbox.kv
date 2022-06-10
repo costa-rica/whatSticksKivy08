@@ -1,0 +1,64 @@
+<MainBoxLayout>
+  act_screen_screen_name:act_screen_screen_name
+  act_name_box:act_name_box
+  # act_note_box:act_note_box
+  # box_date_and_time:box_date_and_time
+  orientation:"vertical"
+
+  BoxLayout:#TopPart of ActivityScreen
+    size_hint:1,.4#x,y
+    BoxLayout:#TopPart Left
+      orientation:"vertical"
+      size_hint:.7,1
+      AnchorLayout:
+        anchor_x:"left"
+        anchor_y:"top"
+        BoxLayoutScreenName:#Add Activity Screen Title Here
+          id:act_screen_screen_name
+
+      BoxLayoutActName:#Add Activity InputBox Here
+        id: act_name_box
+
+
+
+
+
+<BoxLayoutScreenName@BoxLayout>:#ScreenName
+  add_act_name_label:add_act_name_label
+  email_label:email_label
+  orientation:"vertical"
+  # padding_y:"40dp"
+  padding:(0,0,0,0)#left,top,right,bottom
+  Label:
+    id:add_act_name_label
+    size_hint:None,None
+    text: 'Add Activity Window'
+    size: self.texture_size
+
+  Label:
+    id:email_label
+    size_hint:None,None
+    font_size:"1dp"
+    size: self.texture_size
+    color: .2,.2,.2,1
+    # padding:(25,0,0,0)
+  Label:
+
+
+<BoxLayoutActName@BoxLayout>:#Add Activity Name
+  add_act_name_label:add_act_name_label
+  add_act_name:add_act_name
+  orientation:"vertical"
+  Label:
+    id:add_act_name_label
+    text:"Add Activity Name"
+    size_hint:None,None
+    size: self.texture_size
+    font_size:"1dp"
+    color:.3,.3,.3,1
+  TextInputAddName:
+    id:add_act_name
+    rows:1
+    size_hint:1,None
+    font_size:"1dp"
+    height:str(self.font_size * 2)+"dp"

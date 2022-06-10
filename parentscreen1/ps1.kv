@@ -1,0 +1,169 @@
+<ParentScreen1>
+  name:"parent_screen_1"
+  box_ps1:box_ps1
+  anchor_app_name:anchor_app_name
+  label_app_name:label_app_name
+  anchor_email:anchor_email
+  md_txt_field_email:md_txt_field_email
+  anchor_password:anchor_password
+  md_txt_field_password:md_txt_field_password
+  # anchor_show_password:anchor_show_password
+  box_show_password:box_show_password
+  anchor_checkbox_show_password:anchor_checkbox_show_password
+  md_checkbox_show_password:md_checkbox_show_password
+  anchor_label_show_password:anchor_label_show_password
+  label_show_password:label_show_password
+  anchor_login:anchor_login
+  btn_login:btn_login
+  anchor_exit:anchor_exit
+  btn_exit:btn_exit
+  canvas.before:
+    Color:
+      rgb: [127/255,160/255,189/255]
+    Rectangle:
+      pos: self.pos
+      size: self.size
+
+  BoxLayout:#ParentScreen1 Box
+    id:box_ps1
+    orientation:"vertical"
+
+    AnchorLayout:#App Name
+      id:anchor_app_name
+      anchor_x:"center"
+      anchor_y:"bottom"
+      # size_hint:1,None
+      # height:root.ps1_base_height *.3
+
+      Label:
+        id: label_app_name
+        text:"What Sticks"
+        # size_hint:None,None
+        # size:self.texture_size
+        # font_size:root.ps1_base_width * .1
+
+
+    AnchorLayout:#App Email
+      id:anchor_email
+      anchor_x:"left"
+      anchor_y:"bottom"
+      # canvas.before:
+      #   Color:
+      #     rgb: [100/255,100/255,200/255]
+      #   Rectangle:
+      #     pos: self.pos
+      #     size: self.size
+      MDTextField:
+        id:md_txt_field_email
+        hint_text:"Email"
+        icon_right:"email"
+        icon_right_color:.2,.2,.2,1
+        current_hint_text_color:.2,.2,.2,1
+        text_color:0,0,0,1
+
+
+
+
+    AnchorLayout:#App Password
+      id:anchor_password
+      anchor_x:"left"
+      anchor_y:"top"
+      height:md_txt_field_password.height
+      # canvas.before:
+      #   Color:
+      #     rgb: [100/255,100/255,100/255]
+      #   Rectangle:
+      #     pos: self.pos
+      #     size: self.size
+      MDTextField:
+        id:md_txt_field_password
+        hint_text:"Password"
+        password:True
+        icon_right_color:.2,.2,.2,1
+        current_hint_text_color:.2,.2,.2,1
+        text_color:0,0,0,1
+
+
+    # AnchorLayout:#Show password
+    #   id:anchor_show_password
+    #   anchor_y:"top"
+    BoxLayout:
+      id:box_show_password
+      # size_hint:1,None#######<-This probaby needs to be fixed!!!!
+      # height:root.md_checkbox_show_password.height
+      # canvas.before:
+      #   Color:
+      #     rgb: [100/255,100/255,100/255]
+      #   Rectangle:
+      #     pos: self.pos
+      #     size: self.size
+      AnchorLayout:#Checkbox
+        id:anchor_checkbox_show_password
+        # anchor_x:"right"
+        # anchor_y:"top"
+        # size_hint:.2,1
+        # height:root.md_checkbox_show_password.height
+        # width: 1- root.anchor_label_show_password.width
+        # canvas.before:
+        #   Color:
+        #     rgb: [255/255,100/255,100/255]
+        #   Rectangle:
+        #     pos: self.pos
+        #     size: self.size
+        MDCheckbox:
+          id:md_checkbox_show_password
+          on_active: root.show_password(*args)
+          # size_hint:None,None
+          # size:self.texture_size
+          # height: root.anchor_label_show_password.height
+          # height: 10
+      AnchorLayout:#Label
+        id:anchor_label_show_password
+        # anchor_x:"left"
+        # size_hint:.8,1
+        # height:root.md_checkbox_show_password.height
+        # padding:self.width*.03,0,0,0
+        # canvas.before:
+        #   Color:
+        #     rgb: [100/255,200/255,100/255]
+        #   Rectangle:
+        #     pos: self.pos
+        #     size: self.size
+        Label:
+          id: label_show_password
+          text:"Show password"
+          # size_hint:None,None
+          # size:self.texture_size
+
+    AnchorLayout:
+      id:anchor_login
+      MDFillRoundFlatButton:
+        id:btn_login
+        text:'Submit'
+        on_press:
+          print('-START ps1 Submit button-')
+          # app.mycontroller.ps1_base_height=root.ps1_base_height
+          #BaseScreenManager
+          root.parent.ps1_base_width= root.ps1_base_width
+          root.parent.ps1_base_height= root.ps1_base_height
+          root.parent.email=root.md_txt_field_email.text
+          root.verify_user()
+          print('root.parent:', root.parent)
+          print('root.parent.ps1_base_width:',root.parent.ps1_base_width)
+          print('root.parent.ps1_base_height:',root.parent.ps1_base_height)
+          print('-END ps1 Submit button-')
+          # print('acnhro_password:',root.anchor_password.height)
+
+    AnchorLayout:
+      id:anchor_exit
+      MDFillRoundFlatButton:
+        id:btn_exit
+        text:'Exit'
+        on_press:
+          print('anchor_app_name:',root.anchor_app_name.height)
+          print('anchor_email:',root.anchor_email.height)
+          print('acnhro_password:',root.anchor_password.height)
+      # size_hint:1,None
+      # height:root.height *.5
+      # on_press:
+      #   root.get_heights()
