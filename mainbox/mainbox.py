@@ -1,19 +1,33 @@
 from kivy.lang import Builder
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.textinput import TextInput
 from kivy.properties import ObjectProperty, StringProperty
 
+
 Builder.load_file('mainbox/mainbox.kv')
+
+
 
 class MainBoxLayout(BoxLayout):
   ps1_base_width=ObjectProperty(0)
   ps1_base_height=ObjectProperty(0)
   toolbar_height=ObjectProperty(0)
+
   def __init__(self,**kwargs):
     super().__init__(**kwargs)
     print('MainBoxLayout __init__')
+    # self.bind(size=self.on_size)
+    # self.on_size_count=0
 
-  def on_enter(self):
+  # def on_size(self,*args):
+  #   # self.box_sub_date_time.date_input.text=self.date_time_now[0]
+  #
+  #   print('MainBoxLayout on_size:', self.on_size_count)
+  #   self.on_size_count+=1
+  #   # print('self.date_time_now[0]:', self.date_time_now)
+
+  def on_enter(self):#Never shows up
     print('MainBox on_enter****')
 
   def extra_btn_(self,*args):
@@ -27,7 +41,13 @@ class MainBoxLayout(BoxLayout):
     print('self.act_note_box.add_act_note.txt_input_dy_act_note.height:',self.act_note_box.add_act_note.txt_input_dy_act_note.height)
 
 
-class BoxLayoutScreenName(BoxLayout):
+class BoxLayoutDateAndTime(BoxLayout):
+  date_str=StringProperty()
+  time_str=StringProperty()
+  # def on_kv_post(self):
+  #   print('self.parent:')
+
+class AnchorLayoutScreenName(AnchorLayout):
   email=StringProperty('')
   def __init__(self,**kwargs):
     super().__init__(**kwargs)
@@ -57,3 +77,27 @@ class TextInputDynamicActNote(TextInput):
       main_box.act_note_box.add_act_note_label.color=(0,0,0,1)
     else:
       main_box.act_note_box.add_act_note_label.color=(.3,.3,.3,1)
+
+
+class TextInputAddDate(TextInput):
+  def on_focus(instance, instance_twice, value):#I'm not sure why i'm passing instance twice
+    print('***TextInputAddDate***')
+    box_date =instance.parent.parent#different hiearchey than TextInputDynamicActNote
+    print('main_box:', box_date)
+    print('main_box.children:', box_date.children)
+    if value:
+      box_date.date_label.color=(0,0,0,1)
+    else:
+      box_date.date_label.color=(.3,.3,.3,1)
+
+
+class TextInputAddTime(TextInput):
+  def on_focus(instance, instance_twice, value):#I'm not sure why i'm passing instance twice
+    print('***TextInputAddDate***')
+    box_date =instance.parent.parent#different hiearchey than TextInputDynamicActNote
+    print('main_box:', box_date)
+    print('main_box.children:', box_date.children)
+    if value:
+      box_date.time_label.color=(0,0,0,1)
+    else:
+      box_date.time_label.color=(.3,.3,.3,1)

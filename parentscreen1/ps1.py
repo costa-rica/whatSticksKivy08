@@ -37,9 +37,9 @@ class ParentScreen1(Screen):
     if self.call_count >0:
       self.ps1_base_width=self.width
       self.ps1_base_height=self.height
-      print('size_widgets called')
-      print('self.ps1_base_width:',self.ps1_base_width)
-      print('self.ps1_base_height:',self.ps1_base_height)
+      # print('size_widgets called')
+      # print('self.ps1_base_width:',self.ps1_base_width)
+      # print('self.ps1_base_height:',self.ps1_base_height)
       self.md_txt_field_email.text='nickapeed@yahoo.com'
       self.md_txt_field_password.text='test'
     self.call_count+=1

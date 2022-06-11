@@ -2,8 +2,10 @@
   act_screen_screen_name:act_screen_screen_name
   act_name_box:act_name_box
   act_note_box:act_note_box
-  # box_date_and_time:box_date_and_time
-  extra_btn:extra_btn
+  anchor_date_time:anchor_date_time
+  box_sub_date_time:box_sub_date_time
+  # anchor_submit:anchor_submit
+  # extra_btn:extra_btn
   orientation:"vertical"
 
   BoxLayout:#TopPart of ActivityScreen
@@ -15,7 +17,7 @@
     #   Rectangle:
     #     pos: self.pos
     #     size: self.size
-    AnchorLayout:
+    AnchorLayout:#Add Activity Screen Title Here
       anchor_x:"left"
       anchor_y:"top"
       # canvas.before:
@@ -24,9 +26,11 @@
       #   Rectangle:
       #     pos: self.pos
       #     size: self.size
-      BoxLayoutScreenName:#Add Activity Screen Title Here
+      AnchorLayoutScreenName:
         id:act_screen_screen_name
-        padding:root.width*.01,root.height*.01,0,0
+        padding:0,0,root.width*.01,0
+        size_hint: 1,None
+        height: self.email_label.height +root.height*.01
         # canvas.before:
         #   Color:
         #     rgb: [127/255,160/255,100/255]#wshKivy Blue
@@ -38,7 +42,7 @@
     id: act_name_box
     padding:root.width*.05,0,root.width*.05,0
     size_hint:1,None
-    height:self.add_act_name_label.height +self.add_act_name.height+root.height*.1
+    height:self.add_act_name_label.height +self.add_act_name.height+root.height*.08
     # canvas.before:
     #   Color:
     #     rgb: [127/255,160/255,100/255]#wshKivy Blue
@@ -49,38 +53,125 @@
     id:act_note_box
     padding:root.width*.05,0,root.width*.05,0
     size_hint:1,None
-    height: self.add_act_note_label.height + self.add_act_note.gridlayout_text.height+root.height*.1
+    height: self.add_act_note_label.height + self.add_act_note.gridlayout_text.height+root.height*.06
     anchor_y:"center"
 
-  Button:
-    id:extra_btn
-    text:'get sizes'
+  AnchorLayout:#Date and Time Boxes
+    id:anchor_date_time
+    padding:root.width*.05,0,root.width*.05,0
+    BoxLayoutDateAndTime:
+      id:box_sub_date_time
+
+  AnchorLayout:
+    id:anchor_submit
+    anchor_x:"right"
+    anchor_y:"center"
     size_hint:1,None
-    height:root.height-(screen_name_box.height + act_name_box.height +act_note_box.height)
-    on_press:
-      root.extra_btn_(self)
 
+    padding: 0,0,root.width * .06, 0
+    height:root.height-(screen_name_box.height + act_name_box.height +act_note_box.height + anchor_date_time.height)
+    # Label:
+    #   text:"I am here"
+    #   size_hint:None,None
+    #   size:self.texture_size
+    MDFillRoundFlatButton:
+      id:btn_login
+      # size_hint:None,None
 
-<BoxLayoutScreenName>:#ScreenName
-  add_act_name_label:add_act_name_label
+      font_size:root.width*.06
+      text:'Submit'
+      md_bg_color:.2,.2,.2,1
+  #     on_press:
+  #       print('I am:', self)
+
+  # Button:
+  #   id:extra_btn
+  #   text:'get sizes'
+  #   size_hint:1,None
+  #   height:root.height-(screen_name_box.height + act_name_box.height +act_note_box.height + anchor_date_time.height)
+  #   on_press:
+  #     root.extra_btn_(self)
+  #
+  #     print('act_name_box add_act_name_label font_size:', act_name_box.add_act_name_label.font_size)
+  #     print('act_name_box.width *.07:', act_name_box.width *.07)
+  #     print('act_name_box.width:', act_name_box.width)
+  #
+  #     print('act_name_box.add_act_name_label.font_size:',act_name_box.add_act_name_label.font_size)
+  #     print('act_name_box.width *.06:',act_name_box.width *.06)
+  #     print('act_name_box.add_act_name.font_size:',act_name_box.add_act_name.font_size)
+  #     print('act_name_box.width *.06:', act_name_box.width*.06)
+  #
+  #     print('act_note_box.add_act_note_label.font_size:', act_note_box.add_act_note_label.font_size)
+  #     print('act_note_box.width*.06:',act_note_box.width*.06)
+  #     # print()
+
+<BoxLayoutDateAndTime>:#Column 2 on Add Activity Top
+  box_date:box_date
+  date_label:date_label
+  date_input:date_input
+  box_time:box_time
+  time_label:time_label
+  time_input:time_input
+
+  BoxLayout:
+    id:box_date
+    orientation:"vertical"
+    Label:
+      id:date_label
+      text:"Date"
+      size_hint:None,None
+      size: self.texture_size
+      font_size:root.width*.06
+      color:.3,.3,.3,1
+    TextInputAddDate:
+      id:date_input
+      rows:1
+      size_hint:1,None
+      font_size:root.width*.05
+      height:self.line_height
+      padding: (root.width*.01,0,0,0)
+      halign:"left"
+      text:root.date_str
+  BoxLayout:
+    id:box_time
+    orientation:"vertical"
+
+    Label:
+      id:time_label
+      text:"Time"
+      size_hint:None,None
+      size: self.texture_size
+      font_size:root.width*.06
+      color:.3,.3,.3,1
+    TextInputAddTime:
+      id:time_input
+      rows:1
+      size_hint:1,None
+      font_size:root.width*.05
+      height:self.line_height
+      padding: (2,0,0,0)
+      halign:"left"
+      text: root.time_str
+
+<AnchorLayoutScreenName>:#ScreenName
+  # add_act_name_label:add_act_name_label
   email_label:email_label
-  orientation:"vertical"
+  anchor_x:"right"
+  # orientation:"vertical"
   #padding:(0,0,0,0)#left,top,right,bottom
-  Label:
-    id:add_act_name_label
-    size_hint:None,None
-    size: self.texture_size
-    font_size:root.width*.05
-    text: 'Add Activity Window'
-
+  # Label:
+  #   id:add_act_name_label
+  #   size_hint:None,None
+  #   size: self.texture_size
+  #   font_size:root.width*.07
+  #   text: 'Add Activity Window'
   Label:
     id:email_label
     size_hint:None,None
     size: self.texture_size
     color: .2,.2,.2,1
-    font_size:root.width*.03
-    text:"  "+root.email
-  # Label:
+    font_size:root.width*.05
+    text:root.email
 
 <BoxLayoutActName@BoxLayout>:#Add Activity Name
   add_act_name_label:add_act_name_label
@@ -90,21 +181,19 @@
     id:add_act_name_label
     size_hint:None,None
     size: self.texture_size
-    font_size:root.width*.05
+    font_size:root.width*.06
     color:.3,.3,.3,1
     text:"Add Activity Name"
   TextInputAddName:
     id:add_act_name
     rows:1
     size_hint:1,None
-    font_size:root.width*.03
+    font_size:root.width*.05
     height:self.font_size * 2
 
-# <BoxLayoutAddActNote@BoxLayout>:#Box with ActivityNote
-<AnchorLayoutAddActNote@AnchorLayout>:
+<AnchorLayoutAddActNote@AnchorLayout>:#Box with ActivityNote
   add_act_note_label:add_act_note_label
   add_act_note:add_act_note
-
   BoxLayout:
     orientation:"vertical"
     size_hint:1,None
@@ -114,7 +203,7 @@
       text:"Activity Note"
       size_hint:None,None
       size: self.texture_size
-      font_size: root.width*.05
+      font_size: root.width*.06
       color:.3,.3,.3,1
     AnchorLayoutActNote:
       id:add_act_note
@@ -128,8 +217,6 @@
       #     # size: (self.size[0],100)
       #     size: self.size
 
-
-# <BoxLayoutActNote@BoxLayout>:#ActivityNote
 <AnchorLayoutActNote@AnchorLayout>:#ActivityNote
   gridlayout_text:gridlayout_text
   txt_input_dy_act_note: txt_input_dy_act_note
@@ -148,6 +235,6 @@
     #     size: self.size
     TextInputDynamicActNote:
       id: txt_input_dy_act_note
-      font_size: root.width*.03
+      font_size: root.width*.05
       size_hint_y: None
       height: (len(txt_input_dy_act_note._lines)+1) * txt_input_dy_act_note.line_height

@@ -101,10 +101,14 @@
         text:'Submit'
         md_bg_color:.2,.2,.2,1
         on_press:
+          # print('submit btn font_size:',self.font_size)
+          # print('exit btn font_size:', btn_exit.font_size)
+          # print('md_txt_field_email font_size:', md_txt_field_email.font_size)
+          # print('root.ps1_base_width*.06:', root.ps1_base_width*.06)
+          # print('title font_size:', label_app_name.font_size)
+          # print('root.ps1_base_width * .1:', root.ps1_base_width * .1)
+
           #root.parent is BaseScreenManager
-          # root.parent.ps1_base_width= root.ps1_base_width
-          # root.parent.ps1_base_height= root.ps1_base_height
-          # root.parent.email=root.md_txt_field_email.text
           root.verify_user()
 
     AnchorLayout:
