@@ -8,11 +8,13 @@
   anchor_password:anchor_password
   md_txt_field_password:md_txt_field_password
   # anchor_show_password:anchor_show_password
-  box_show_password:box_show_password
-  anchor_checkbox_show_password:anchor_checkbox_show_password
-  md_checkbox_show_password:md_checkbox_show_password
-  anchor_label_show_password:anchor_label_show_password
-  label_show_password:label_show_password
+  # box_show_password:box_show_password
+  # anchor_checkbox_show_password:anchor_checkbox_show_password
+  # md_checkbox_show_password:md_checkbox_show_password
+  # label_checkbox_spacer:label_checkbox_spacer
+  # anchor_label_show_password:anchor_label_show_password
+  # label_show_password:label_show_password
+
   anchor_login:anchor_login
   btn_login:btn_login
   anchor_exit:anchor_exit
@@ -32,27 +34,24 @@
       id:anchor_app_name
       anchor_x:"center"
       anchor_y:"bottom"
-      # size_hint:1,None
-      # height:root.ps1_base_height *.3
+      size_hint:1,None
+      height:root.ps1_base_height * .2
 
       Label:
         id: label_app_name
         text:"What Sticks"
-        # size_hint:None,None
-        # size:self.texture_size
-        # font_size:root.ps1_base_width * .1
-
+        size_hint:None,None
+        size:self.texture_size
+        font_size:root.ps1_base_width * .1
 
     AnchorLayout:#App Email
       id:anchor_email
       anchor_x:"left"
       anchor_y:"bottom"
-      # canvas.before:
-      #   Color:
-      #     rgb: [100/255,100/255,200/255]
-      #   Rectangle:
-      #     pos: self.pos
-      #     size: self.size
+      size_hint:1,None
+      height:root.ps1_base_height * .2
+      padding:root.ps1_base_width * .06,0,root.ps1_base_width * .06,0
+
       MDTextField:
         id:md_txt_field_email
         hint_text:"Email"
@@ -60,15 +59,15 @@
         icon_right_color:.2,.2,.2,1
         current_hint_text_color:.2,.2,.2,1
         text_color:0,0,0,1
-
-
-
+        font_size: root.ps1_base_width * .06
 
     AnchorLayout:#App Password
       id:anchor_password
       anchor_x:"left"
       anchor_y:"top"
-      height:md_txt_field_password.height
+      size_hint: 1,None
+      height:root.ps1_base_height * .2
+      padding:root.ps1_base_width * .06,0, root.ps1_base_width * .06,0
       # canvas.before:
       #   Color:
       #     rgb: [100/255,100/255,100/255]
@@ -82,64 +81,72 @@
         icon_right_color:.2,.2,.2,1
         current_hint_text_color:.2,.2,.2,1
         text_color:0,0,0,1
+        font_size: root.ps1_base_width * .06
 
-
-    # AnchorLayout:#Show password
-    #   id:anchor_show_password
-    #   anchor_y:"top"
     BoxLayout:
-      id:box_show_password
-      # size_hint:1,None#######<-This probaby needs to be fixed!!!!
-      # height:root.md_checkbox_show_password.height
       # canvas.before:
       #   Color:
       #     rgb: [100/255,100/255,100/255]
       #   Rectangle:
       #     pos: self.pos
       #     size: self.size
-      AnchorLayout:#Checkbox
-        id:anchor_checkbox_show_password
-        # anchor_x:"right"
-        # anchor_y:"top"
-        # size_hint:.2,1
-        # height:root.md_checkbox_show_password.height
-        # width: 1- root.anchor_label_show_password.width
-        # canvas.before:
-        #   Color:
-        #     rgb: [255/255,100/255,100/255]
-        #   Rectangle:
-        #     pos: self.pos
-        #     size: self.size
-        MDCheckbox:
-          id:md_checkbox_show_password
-          on_active: root.show_password(*args)
-          # size_hint:None,None
-          # size:self.texture_size
-          # height: root.anchor_label_show_password.height
-          # height: 10
-      AnchorLayout:#Label
-        id:anchor_label_show_password
-        # anchor_x:"left"
-        # size_hint:.8,1
-        # height:root.md_checkbox_show_password.height
-        # padding:self.width*.03,0,0,0
-        # canvas.before:
-        #   Color:
-        #     rgb: [100/255,200/255,100/255]
-        #   Rectangle:
-        #     pos: self.pos
-        #     size: self.size
+      size_hint:1,None
+      height: label_show_password.height
+      MDCheckbox:
+        size_hint:.5,None
+        height: label_show_password.height
+
+      BoxLayout:
+        size_hint:1,None
+        height: label_show_password.height
+
         Label:
-          id: label_show_password
+          id:label_show_password
           text:"Show password"
-          # size_hint:None,None
-          # size:self.texture_size
+          size_hint:None,None
+          size:self.texture_size
+          font_size:root.ps1_base_width *.06
+
+    # BoxLayout:
+    #   id:box_show_password
+    #   # size_hint:1,None#######<-This probaby needs to be fixed!!!!
+    #   # height:root.md_checkbox_show_password.height
+    #   # canvas.before:
+    #   #   Color:
+    #   #     rgb: [100/255,100/255,100/255]
+    #   #   Rectangle:
+    #   #     pos: self.pos
+    #   #     size: self.size
+    #   # AnchorLayout:#Checkbox
+    #   #   id:anchor_checkbox_show_password
+    #   BoxLayout:
+    #     id:anchor_checkbox_show_password
+    #     orientation:"vertical"
+    #     MDCheckbox:
+    #       id:md_checkbox_show_password
+    #       on_active: root.show_password(*args)
+    #     Label:
+    #       id:label_checkbox_spacer
+    #
+    #   BoxLayout
+    #   # AnchorLayout:#Label
+    #     id:anchor_label_show_password
+    #
+    #     Label:
+    #       id: label_show_password
+    #       text:"Show password"
+
 
     AnchorLayout:
       id:anchor_login
+      anchor_x:"right"
+      padding: 0,0,root.ps1_base_width * .06, 0
       MDFillRoundFlatButton:
         id:btn_login
+        size_hint:.5,.35
+        font_size:root.ps1_base_width*.06
         text:'Submit'
+        md_bg_color:.2,.2,.2,1
         on_press:
           print('-START ps1 Submit button-')
           # app.mycontroller.ps1_base_height=root.ps1_base_height
@@ -156,9 +163,15 @@
 
     AnchorLayout:
       id:anchor_exit
+      anchor_x:"right"
+      anchor_y:"top"
+      padding:0,0,root.ps1_base_width*.06,0
       MDFillRoundFlatButton:
         id:btn_exit
         text:'Exit'
+        size_hint:.25,.35
+        font_size:root.ps1_base_width*.06
+        md_bg_color:.5,.5,.5,1
         on_press:
           print('anchor_app_name:',root.anchor_app_name.height)
           print('anchor_email:',root.anchor_email.height)

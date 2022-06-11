@@ -3,11 +3,11 @@ from kivy.core.window import Window
 from myscreencontroller import MyScreenController
 import os;import platform
 
-# if platform in ['ios','android']:
-#   print('kivy.utils.platform:::', platform)
-# else:
-#   Window.size = (640, 1136)#iphone demensions
-
+if platform in ['ios','android']:
+  print('kivy.utils.platform:::', platform)
+else:
+  # Window.size = (640, 1136)#iphone demensions
+  Window.size = (960, 1704)#iphone mini
 
 class MainApp(MDApp):
   def __init__(self,**kwargs):

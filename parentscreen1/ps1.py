@@ -17,6 +17,8 @@ class ParentScreen1(Screen):
   email_field = ObjectProperty()
   password_field = ObjectProperty()
   password_flag_text =ObjectProperty()
+  ps1_base_width=ObjectProperty(0)
+  ps1_base_height=ObjectProperty(0)
   def __init__(self,**kwargs):
     super().__init__(**kwargs)
     print('ParentScreen1 __init__')
@@ -38,63 +40,71 @@ class ParentScreen1(Screen):
       print('self.parent.children:', self.parent.children)
 
 #App Name Anchor
-      self.anchor_app_name.size_hint=(1,None)
-      self.anchor_app_name.height = self.ps1_base_height *.2
-      self.label_app_name.size_hint=(None,None)
-      self.label_app_name.size = self.label_app_name.texture_size
-      self.label_app_name.font_size=self.ps1_base_width*.1
+      # self.anchor_app_name.size_hint=(1,None)
+      # self.anchor_app_name.height = self.ps1_base_height *.2
+      # self.label_app_name.size_hint=(None,None)
+      # self.label_app_name.size = self.label_app_name.texture_size
+      # self.label_app_name.font_size=self.ps1_base_width*.1
       # print('ps1.label_app_name.height:',self.label_app_name.height)
 
 #Email Anchor
       # print('Before Email Anchor Height:',self.anchor_email.height)
-      self.anchor_email.size_hint=(1,None)
-      self.anchor_email.height=self.ps1_base_height *.2
+      # self.anchor_email.size_hint=(1,None)
+      # self.anchor_email.height=self.ps1_base_height *.2
       # print('Anchor Email Height (after being set):', self.anchor_email.height)
-      self.anchor_email.padding=(self.ps1_base_width * .06,
-        0,self.ps1_base_width * .06,0)
-      self.md_txt_field_email.font_size=self.ps1_base_width*.06
+      # self.anchor_email.padding=(self.ps1_base_width * .06,
+      #   0,self.ps1_base_width * .06,0)
+      # self.md_txt_field_email.font_size=self.ps1_base_width*.06
       # print('ps1.md_txt_field_email.height :',self.md_txt_field_email.height)
 
 #Password Anchor
-      self.anchor_password.size_hint=(1,None)
-      self.anchor_password.height=self.ps1_base_height * .2
+      # self.anchor_password.size_hint=(1,None)
+      # self.anchor_password.height=self.ps1_base_height * .2
       # print('Anchor Password Height (after being set):', self.anchor_password.height)
-      self.anchor_password.padding=(self.ps1_base_width * .06,
-        0,self.ps1_base_width * .06,0)
-      self.md_txt_field_password.font_size=self.ps1_base_width*.06
+      # self.anchor_password.padding=(self.ps1_base_width * .06,
+      #   0,self.ps1_base_width * .06,0)
+      # self.md_txt_field_password.font_size=self.ps1_base_width*.06
 
-#Show Password BoxLayout
-      self.box_show_password.size_hint=(1,None)
-      self.box_show_password.height=self.ps1_base_height * .1
-
-#Show Password Checkbox
-      self.anchor_checkbox_show_password.anchor_x="right"
-      self.md_checkbox_show_password.size_hint=(None,None)
-      self.md_checkbox_show_password.size=self.md_checkbox_show_password.texture_size
-
-#Show Password Label
-      self.anchor_label_show_password.anchor_x="left"
-      self.label_show_password.font_size = self.ps1_base_width*.05
-      self.label_show_password.size_hint=(None,None)
-      self.label_show_password.size=self.label_show_password.texture_size
-      self.label_show_password.color=(.3,.3,.3,1)
+# #Show Password BoxLayout
+#       self.box_show_password.size_hint=(1,None)
+#       self.box_show_password.height=self.ps1_base_height * .1
+#
+# #Show Password Checkbox
+#       # self.anchor_checkbox_show_password.anchor_x="right"
+#       # self.anchor_checkbox_show_password.padding=(self.ps1_base_width*.06,
+#       #   0,0,0)
+#       self.anchor_checkbox_show_password.size_hint=(None,None)
+#       self.anchor_checkbox_show_password.size=(self.width *.10,self.box_show_password.height)
+#       self.md_checkbox_show_password.size_hint=(None,None)
+#       self.md_checkbox_show_password.size=self.md_checkbox_show_password.texture_size
+#       self.label_checkbox_spacer.size_hint=(1,None)
+#       self.label_checkbox_spacer.height=self.ps1_base_height * .015
+#
+# #Show Password Label
+#       # self.anchor_label_show_password.anchor_x="left"
+#       self.anchor_label_show_password.size_hint=(None,None)
+#       self.anchor_label_show_password.size=((1-self.anchor_checkbox_show_password.size[0]),
+#         self.box_show_password.height)
+#       # self.anchor_label_show_password.padding=(self.ps1_base_width*.06,0,0,0)
+#       self.label_show_password.font_size = self.ps1_base_width*.05
+#       self.label_show_password.size_hint=(None,None)
+#       self.label_show_password.size=self.label_show_password.texture_size
+#       self.label_show_password.color=(.3,.3,.3,1)
 
 #Anchor Submit
-      self.btn_login.size_hint=(.5,.35)
-      self.btn_login.font_size=self.ps1_base_width*.06
-      self.btn_login.md_bg_color=(.2,.2,.2,1)
-      self.anchor_login.anchor_x="right"
-      self.anchor_login.padding=(0,0,self.ps1_base_width * .06,0)
+      # self.btn_login.size_hint=(.5,.35)
+      # self.btn_login.font_size=self.ps1_base_width*.06
+      # self.btn_login.md_bg_color=(.2,.2,.2,1)
+      # self.anchor_login.anchor_x="right"
+      # self.anchor_login.padding=(0,0,self.ps1_base_width * .06,0)
 
 #Anchor Exit
-      self.btn_exit.size_hint=(.25,.35)
-      self.btn_exit.font_size=self.ps1_base_width*.06
-      self.btn_exit.md_bg_color=(.5,.5,.5,1)
-      self.anchor_exit.anchor_x="right"
-      self.anchor_exit.anchor_y="top"
-      self.anchor_exit.padding=(0,0,self.ps1_base_width * .06,0)
-
-
+      # self.btn_exit.size_hint=(.25,.35)
+      # self.btn_exit.font_size=self.ps1_base_width*.06
+      # self.btn_exit.md_bg_color=(.5,.5,.5,1)
+      # self.anchor_exit.anchor_x="right"
+      # self.anchor_exit.anchor_y="top"
+      # self.anchor_exit.padding=(0,0,self.ps1_base_width * .06,0)
 
     self.call_count+=1
 
