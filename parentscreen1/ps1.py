@@ -6,121 +6,88 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.core.window import Window
 from kivy.uix.widget import Widget
 from kivy.graphics import Rectangle, Color
+from kivymd.uix.behaviors.toggle_behavior import MDToggleButton
+from kivymd.uix.button import MDRectangleFlatButton, MDFillRoundFlatButton
+
+import requests
+import json
 
 
 Builder.load_file('parentscreen1/ps1.kv')
 
 
 class ParentScreen1(Screen):
-  email_text = StringProperty()
-  password_text = StringProperty()
-  email_field = ObjectProperty()
-  password_field = ObjectProperty()
-  password_flag_text =ObjectProperty()
+  # email_text = StringProperty()
+  # # password_text = StringProperty()
+  # email_field = ObjectProperty()
+  # password_field = ObjectProperty()
+  # password_flag_text =ObjectProperty()
+  md_txt_field_email=ObjectProperty()
+  md_txt_field_password=ObjectProperty()
   ps1_base_width=ObjectProperty(0)
   ps1_base_height=ObjectProperty(0)
+
   def __init__(self,**kwargs):
     super().__init__(**kwargs)
     print('ParentScreen1 __init__')
     self.bind(size=self.size_widgets)
     self.call_count=0
 
-  def verify_user(self):
-    # self.parent.
-    self.parent.current="parent_screen_2"
-
   def size_widgets(self,*args):
     if self.call_count >0:
       self.ps1_base_width=self.width
       self.ps1_base_height=self.height
       print('size_widgets called')
-      print('width:',self.ps1_base_width)
-      print('height:',self.ps1_base_height)
-      print('self.parent:', self.parent)
-      print('self.parent.children:', self.parent.children)
-
-#App Name Anchor
-      # self.anchor_app_name.size_hint=(1,None)
-      # self.anchor_app_name.height = self.ps1_base_height *.2
-      # self.label_app_name.size_hint=(None,None)
-      # self.label_app_name.size = self.label_app_name.texture_size
-      # self.label_app_name.font_size=self.ps1_base_width*.1
-      # print('ps1.label_app_name.height:',self.label_app_name.height)
-
-#Email Anchor
-      # print('Before Email Anchor Height:',self.anchor_email.height)
-      # self.anchor_email.size_hint=(1,None)
-      # self.anchor_email.height=self.ps1_base_height *.2
-      # print('Anchor Email Height (after being set):', self.anchor_email.height)
-      # self.anchor_email.padding=(self.ps1_base_width * .06,
-      #   0,self.ps1_base_width * .06,0)
-      # self.md_txt_field_email.font_size=self.ps1_base_width*.06
-      # print('ps1.md_txt_field_email.height :',self.md_txt_field_email.height)
-
-#Password Anchor
-      # self.anchor_password.size_hint=(1,None)
-      # self.anchor_password.height=self.ps1_base_height * .2
-      # print('Anchor Password Height (after being set):', self.anchor_password.height)
-      # self.anchor_password.padding=(self.ps1_base_width * .06,
-      #   0,self.ps1_base_width * .06,0)
-      # self.md_txt_field_password.font_size=self.ps1_base_width*.06
-
-# #Show Password BoxLayout
-#       self.box_show_password.size_hint=(1,None)
-#       self.box_show_password.height=self.ps1_base_height * .1
-#
-# #Show Password Checkbox
-#       # self.anchor_checkbox_show_password.anchor_x="right"
-#       # self.anchor_checkbox_show_password.padding=(self.ps1_base_width*.06,
-#       #   0,0,0)
-#       self.anchor_checkbox_show_password.size_hint=(None,None)
-#       self.anchor_checkbox_show_password.size=(self.width *.10,self.box_show_password.height)
-#       self.md_checkbox_show_password.size_hint=(None,None)
-#       self.md_checkbox_show_password.size=self.md_checkbox_show_password.texture_size
-#       self.label_checkbox_spacer.size_hint=(1,None)
-#       self.label_checkbox_spacer.height=self.ps1_base_height * .015
-#
-# #Show Password Label
-#       # self.anchor_label_show_password.anchor_x="left"
-#       self.anchor_label_show_password.size_hint=(None,None)
-#       self.anchor_label_show_password.size=((1-self.anchor_checkbox_show_password.size[0]),
-#         self.box_show_password.height)
-#       # self.anchor_label_show_password.padding=(self.ps1_base_width*.06,0,0,0)
-#       self.label_show_password.font_size = self.ps1_base_width*.05
-#       self.label_show_password.size_hint=(None,None)
-#       self.label_show_password.size=self.label_show_password.texture_size
-#       self.label_show_password.color=(.3,.3,.3,1)
-
-#Anchor Submit
-      # self.btn_login.size_hint=(.5,.35)
-      # self.btn_login.font_size=self.ps1_base_width*.06
-      # self.btn_login.md_bg_color=(.2,.2,.2,1)
-      # self.anchor_login.anchor_x="right"
-      # self.anchor_login.padding=(0,0,self.ps1_base_width * .06,0)
-
-#Anchor Exit
-      # self.btn_exit.size_hint=(.25,.35)
-      # self.btn_exit.font_size=self.ps1_base_width*.06
-      # self.btn_exit.md_bg_color=(.5,.5,.5,1)
-      # self.anchor_exit.anchor_x="right"
-      # self.anchor_exit.anchor_y="top"
-      # self.anchor_exit.padding=(0,0,self.ps1_base_width * .06,0)
-
+      print('self.ps1_base_width:',self.ps1_base_width)
+      print('self.ps1_base_height:',self.ps1_base_height)
+      self.md_txt_field_email.text='nickapeed@yahoo.com'
+      self.md_txt_field_password.text='test'
     self.call_count+=1
 
 
-  def get_heights(self):
-    for i in self.children:
-      print(i, i.height)
+  def verify_user(self):
+    base_url = 'https://api.what-sticks-health.com'
+    response_login = requests.request('GET',base_url + '/login',
+        auth=(self.md_txt_field_email.text,self.md_txt_field_password.text))
+    print('response_login.status_code:::', response_login.status_code)
+    if response_login.status_code ==200:
+      login_token = json.loads(response_login.content.decode('utf-8'))['token']
 
-  def show_password(self, checkbox, value):
-    if value:
-      self.label_show_password.text="Hide password"
+      url_user_data = base_url + "/user_account_data"
+      headers = {'x-access-token': login_token,'Content-Type': 'application/json'}
+      response_user_data = requests.request("GET", url_user_data, headers=headers)
+      user_data_dict = json.loads(response_user_data.text)
+
+      self.parent.ps1_base_width=self.ps1_base_width
+      self.parent.ps1_base_height=self.ps1_base_height
+
+      self.parent.email = self.md_txt_field_email.text
+      self.parent.login_token = login_token
+      self.parent.id = user_data_dict['id']
+      self.parent.username=user_data_dict['username']
+      self.parent.user_timezone = user_data_dict['user_timezone']
+
+
+    self.parent.current="parent_screen_2"
+
+
+
+
+  def show_password(self,toggle_widget):
+    print('toggle_widget:', toggle_widget.state)
+    if toggle_widget.state=='down':
+      self.show_password_toggle.text="Hide password"
       self.md_txt_field_password.password=False
     else:
-      self.label_show_password.text="Show password"
+      self.show_password_toggle.text="Show password"
       self.md_txt_field_password.password = True
 
+
+
+class ShowPasswordToggle(MDFillRoundFlatButton, MDToggleButton):
+  def __init__(self, **kwargs):
+    super().__init__(**kwargs)
+    self.background_down = self.theme_cls.primary_light
 
 # class CanvasWidget(Widget):
 #     def __init__(self,**kwargs):
