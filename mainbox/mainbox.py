@@ -3,42 +3,72 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.textinput import TextInput
 from kivy.properties import ObjectProperty, StringProperty
-
+from utils import add_activity_util
+from kivy.uix.popup import Popup
+from utils import current_time_util
 
 Builder.load_file('mainbox/mainbox.kv')
-
 
 
 class MainBoxLayout(BoxLayout):
   ps1_base_width=ObjectProperty(0)
   ps1_base_height=ObjectProperty(0)
   toolbar_height=ObjectProperty(0)
-
+  # date_str=StringProperty()
+  # text_size_coef=ObjectProperty(.06)
+  # text_size_coef_sm=ObjectProperty(.04)
   def __init__(self,**kwargs):
     super().__init__(**kwargs)
     print('MainBoxLayout __init__')
-    # self.bind(size=self.on_size)
-    # self.on_size_count=0
-
-  # def on_size(self,*args):
-  #   # self.box_sub_date_time.date_input.text=self.date_time_now[0]
-  #
-  #   print('MainBoxLayout on_size:', self.on_size_count)
-  #   self.on_size_count+=1
-  #   # print('self.date_time_now[0]:', self.date_time_now)
 
   def on_enter(self):#Never shows up
-    print('MainBox on_enter****')
+    print('MainBox on_enter**** Never Shows up right???????')
 
-  def extra_btn_(self,*args):
-    print('**contents Box BoxLayoutAddActNote*** ')
-    print('self.act_note_box.height:', self.act_note_box.height)
-    print('self.act_note_box.add_act_note_label.height:', self.act_note_box.add_act_note_label.height)
-    print('self.act_note_box.add_act_note.height:',self.act_note_box.add_act_note.height)
+  def submit_btn(self):
+    print('we just submitted some key life changing information.')
+    print('self.parent.parent:', self.parent.parent.parent.parent.parent.parent.parent)
+    base_screen = self.parent.parent.parent.parent.parent.parent.parent
+    print('base_screen.login_token:',base_screen.login_token)
+    try:
+      # num=int("String")#Create ValueError
+      add_activity_util(
+        self.act_name_box.add_act_name.text, #title of activity
+        self.act_note_box.add_act_note.txt_input_dy_act_note.text, #not of activity
+        base_screen.id,
+        base_screen.user_timezone,
+        self.box_sub_date_time.date_input.text,
+        self.box_sub_date_time.time_input.text,
+        base_screen.email,
+        base_screen.login_token)
 
-    print('**contents of BoxLayoutActNote**')
-    print('self.act_note_box.add_act_note.gridlayout_text.height:', self.act_note_box.add_act_note.gridlayout_text.height)
-    print('self.act_note_box.add_act_note.txt_input_dy_act_note.height:',self.act_note_box.add_act_note.txt_input_dy_act_note.height)
+      custom_popup = CustomPopup(
+        title="Activity Succesfully Added",
+        title_color=(127/255,160/255,189/255),
+        separator_color=(127/255,160/255,189/255),
+        title_size=self.width*.03
+        )
+      custom_popup.bind(on_dismiss=self.clear_screen)
+      custom_popup.open()
+
+    except ValueError:
+
+      custom_popup = CustomPopup(
+        title="Activity NOT Added",
+        title_color=(250/255,160/255,127/255),
+        separator_color=(250/255,160/255,127/255),
+        title_size=self.width*.03
+        )
+      custom_popup.bind(on_dismiss=self.clear_screen)
+      custom_popup.open()
+
+  def clear_screen(self,*args):
+    print('clear_screen')
+    base_screen = self.parent.parent.parent.parent.parent.parent.parent
+    self.act_name_box.add_act_name.text=''
+    self.act_note_box.add_act_note.txt_input_dy_act_note.text=''
+    self.box_sub_date_time.date_input.text,self.box_sub_date_time.time_input.text=current_time_util(base_screen.user_timezone)
+
+class CustomPopup(Popup):...
 
 
 class BoxLayoutDateAndTime(BoxLayout):
@@ -47,19 +77,17 @@ class BoxLayoutDateAndTime(BoxLayout):
   # def on_kv_post(self):
   #   print('self.parent:')
 
+
 class AnchorLayoutScreenName(AnchorLayout):
   email=StringProperty('')
   def __init__(self,**kwargs):
     super().__init__(**kwargs)
 
 
-
 class TextInputAddName(TextInput):
   def on_focus(instance, instance_twice, value):#I'm not sure why i'm passing instance twice
     print('***TextInputAddName***')
     main_box =instance.parent.parent#different hiearchey than TextInputDynamicActNote
-    # print('main_box:', main_box)
-    # print('main_box.children:', main_box.children)
     if value:
       main_box.act_name_box.add_act_name_label.color=(0,0,0,1)
     else:
@@ -69,10 +97,7 @@ class TextInputAddName(TextInput):
 class TextInputDynamicActNote(TextInput):
   def on_focus(instance, instance_twice, value):
     print('TextInputDynamicActNote on_focus')
-
     main_box=instance.parent.parent.parent.parent.parent
-    # print('main_box:::', main_box)
-    # print('main_box.children:::', main_box.children)
     if value:
       main_box.act_note_box.add_act_note_label.color=(0,0,0,1)
     else:

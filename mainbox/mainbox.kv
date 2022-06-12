@@ -62,48 +62,22 @@
     BoxLayoutDateAndTime:
       id:box_sub_date_time
 
-  AnchorLayout:
+  AnchorLayout:#Activity Submit Button
     id:anchor_submit
     anchor_x:"right"
     anchor_y:"center"
     size_hint:1,None
-
     padding: 0,0,root.width * .06, 0
     height:root.height-(screen_name_box.height + act_name_box.height +act_note_box.height + anchor_date_time.height)
-    # Label:
-    #   text:"I am here"
-    #   size_hint:None,None
-    #   size:self.texture_size
     MDFillRoundFlatButton:
       id:btn_login
-      # size_hint:None,None
-
       font_size:root.width*.06
-      text:'Submit'
+      text:'Submit Activity'
       md_bg_color:.2,.2,.2,1
-  #     on_press:
-  #       print('I am:', self)
+      on_press:
+        root.submit_btn()
 
-  # Button:
-  #   id:extra_btn
-  #   text:'get sizes'
-  #   size_hint:1,None
-  #   height:root.height-(screen_name_box.height + act_name_box.height +act_note_box.height + anchor_date_time.height)
-  #   on_press:
-  #     root.extra_btn_(self)
-  #
-  #     print('act_name_box add_act_name_label font_size:', act_name_box.add_act_name_label.font_size)
-  #     print('act_name_box.width *.07:', act_name_box.width *.07)
-  #     print('act_name_box.width:', act_name_box.width)
-  #
-  #     print('act_name_box.add_act_name_label.font_size:',act_name_box.add_act_name_label.font_size)
-  #     print('act_name_box.width *.06:',act_name_box.width *.06)
-  #     print('act_name_box.add_act_name.font_size:',act_name_box.add_act_name.font_size)
-  #     print('act_name_box.width *.06:', act_name_box.width*.06)
-  #
-  #     print('act_note_box.add_act_note_label.font_size:', act_note_box.add_act_note_label.font_size)
-  #     print('act_note_box.width*.06:',act_note_box.width*.06)
-  #     # print()
+
 
 <BoxLayoutDateAndTime>:#Column 2 on Add Activity Top
   box_date:box_date
@@ -152,6 +126,16 @@
       padding: (2,0,0,0)
       halign:"left"
       text: root.time_str
+
+<CustomPopup>:
+  size_hint:.4,.3
+  AnchorLayout:
+    Button:
+      size_hint:.8,.4
+      text:"OK"
+      on_press:
+        root.dismiss()
+
 
 <AnchorLayoutScreenName>:#ScreenName
   # add_act_name_label:add_act_name_label

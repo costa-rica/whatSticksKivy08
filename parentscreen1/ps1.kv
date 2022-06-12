@@ -53,7 +53,7 @@
         icon_right_color:.2,.2,.2,1
         current_hint_text_color:.2,.2,.2,1
         text_color:0,0,0,1
-        font_size: root.ps1_base_width * .06
+        font_size: root.ps1_base_width * root.text_size_coef
 
     AnchorLayout:#App Password
       id:anchor_password
@@ -75,7 +75,7 @@
         icon_right_color:.2,.2,.2,1
         current_hint_text_color:.2,.2,.2,1
         text_color:0,0,0,1
-        font_size: root.ps1_base_width * .06
+        font_size: root.ps1_base_width * root.text_size_coef
 
 
     AnchorLayout:
@@ -86,7 +86,7 @@
       ShowPasswordToggle:
         id:show_password_toggle
         text:"Show password"
-        font_size:root.ps1_base_width *.04
+        font_size:root.ps1_base_width * root.text_size_coef_sm
         on_press: root.show_password(self)
 
 
@@ -97,7 +97,7 @@
       MDFillRoundFlatButton:
         id:btn_login
         size_hint:.5,.35
-        font_size:root.ps1_base_width*.06
+        font_size:root.ps1_base_width* root.text_size_coef
         text:'Submit'
         md_bg_color:.2,.2,.2,1
         on_press:
@@ -120,7 +120,17 @@
         id:btn_exit
         text:'Exit'
         size_hint:.25,.35
-        font_size:root.ps1_base_width*.06
+        font_size:root.ps1_base_width* root.text_size_coef
         md_bg_color:.5,.5,.5,1
         on_press:
           app.stop()
+
+
+# <CustomPopup>:
+#   size_hint:.4,.3
+#   AnchorLayout:
+#     Button:
+#       size_hint:.8,.4
+#       text:"OK"
+#       on_press:
+#         root.dismiss()

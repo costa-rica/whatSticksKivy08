@@ -16,7 +16,7 @@
     id: toolbar
     pos_hint: {"top": 1}
     elevation: 10
-    title: "What-Sticks-Health"
+    title: "What-Sticks"
     left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
     md_bg_color: .3,.3,.3,1
     # font_size:root.width * .06
@@ -35,7 +35,7 @@
         name:"table_screen"
     MDNavigationDrawer:
       id:nav_drawer
-      size_hint:.4,None
+      size_hint:.5,None
       height:root.height - root.toolbar.size[1]
       NavMenu:
 
@@ -55,19 +55,6 @@
         size_hint:1,None
         height:self.ps1_base_height *.5
 
-# <MainBoxLayout>
-#   orientation:"vertical"
-#   # size_hint:None,None
-#   # size:self.ps1_base_width,self.ps1_base_height
-#   Label:
-#     text:"Activity SCreen"
-#   Button:
-#     text:"Button"
-#     on_press:
-#       print('BaseScreenManager:', root.parent.parent.parent.parent)
-#       print('ps1_base_height:', root.parent.parent.parent.parent.ps1_base_height)
-#       # print(app.mycontroller)
-#       # print(app.mycontroller.ps1_base_height)
 
 <ExtraBoxLayout>
   orientation:"vertical"
@@ -80,6 +67,9 @@
     Button:
       text:"Button"
 
+
+
+
 <NavMenu>
   spacing:10
   orientation:"vertical"
@@ -91,12 +81,10 @@
       size: self.size
   OneLineListItem:
     text:"Add Activity"
-
     on_press:
       root.parent.parent.parent.child_sm.current="act_screen"
 
   OneLineListItem:
-
     text:"View Logged Activties"
     on_press:
       root.parent.parent.parent.child_sm.current="table_screen"

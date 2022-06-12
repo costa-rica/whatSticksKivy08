@@ -2,31 +2,30 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.properties import ObjectProperty, ColorProperty, StringProperty
 from kivy.uix.boxlayout import BoxLayout
-
 from kivy.core.window import Window
 from kivy.uix.widget import Widget
 from kivy.graphics import Rectangle, Color
 from kivymd.uix.behaviors.toggle_behavior import MDToggleButton
 from kivymd.uix.button import MDRectangleFlatButton, MDFillRoundFlatButton
+from kivy.uix.popup import Popup
+
+from mainbox.mainbox import CustomPopup
 
 import requests
 import json
 
+from utils import text_size_coef_utility
 
 Builder.load_file('parentscreen1/ps1.kv')
 
 
 class ParentScreen1(Screen):
-  # email_text = StringProperty()
-  # # password_text = StringProperty()
-  # email_field = ObjectProperty()
-  # password_field = ObjectProperty()
-  # password_flag_text =ObjectProperty()
   md_txt_field_email=ObjectProperty()
   md_txt_field_password=ObjectProperty()
   ps1_base_width=ObjectProperty(0)
   ps1_base_height=ObjectProperty(0)
-
+  text_size_coef=ObjectProperty(.06)
+  text_size_coef_sm=ObjectProperty(.04)
   def __init__(self,**kwargs):
     super().__init__(**kwargs)
     print('ParentScreen1 __init__')
@@ -37,11 +36,12 @@ class ParentScreen1(Screen):
     if self.call_count >0:
       self.ps1_base_width=self.width
       self.ps1_base_height=self.height
-      # print('size_widgets called')
-      # print('self.ps1_base_width:',self.ps1_base_width)
-      # print('self.ps1_base_height:',self.ps1_base_height)
+
       self.md_txt_field_email.text='nickapeed@yahoo.com'
       self.md_txt_field_password.text='test'
+
+      self.text_size_coef, self.text_size_coef_sm = text_size_coef_utility(size='small')
+
     self.call_count+=1
 
 
@@ -68,7 +68,16 @@ class ParentScreen1(Screen):
       self.parent.user_timezone = user_data_dict['user_timezone']
 
 
-    self.parent.current="parent_screen_2"
+      self.parent.current="parent_screen_2"
+    else:
+      custom_popup = CustomPopup(
+        title="Login Unsuccessful",
+        title_color=(250/255,160/255,127/255),
+        separator_color=(250/255,160/255,127/255),
+        title_size=self.width*.03
+        )
+      # custom_popup.bind(on_dismiss=self.clear_screen)
+      custom_popup.open()
 
 
 
@@ -88,6 +97,9 @@ class ShowPasswordToggle(MDFillRoundFlatButton, MDToggleButton):
   def __init__(self, **kwargs):
     super().__init__(**kwargs)
     self.background_down = self.theme_cls.primary_light
+
+# class CustomPopup(Popup):...
+
 
 # class CanvasWidget(Widget):
 #     def __init__(self,**kwargs):
