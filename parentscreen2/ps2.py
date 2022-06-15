@@ -8,8 +8,8 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.label import Label
 
 import mainbox.mainbox
-
-from utils import current_time_util
+import tablescreen.tablescreen
+from utils import current_time_util, table_api_util, convert_datetime, make_date_string
 
 Builder.load_file('parentscreen2/ps2.kv')
 
@@ -44,6 +44,7 @@ class ParentScreen2(Screen):
     date_time_box = main_box.children[1].children[0]
 
 
+
   #Assign MainBox and ExtraBox dimensions AND pass ps1_base dimensions
     main_box.ps1_base_width=self.parent.ps1_base_width
     main_box.ps1_base_height=self.parent.ps1_base_height-self.toolbar.height
@@ -60,6 +61,21 @@ class ParentScreen2(Screen):
 
   #date time box assignments (inside MainBox)
     date_time_box.date_str, date_time_box.time_str=current_time_util(self.parent.user_timezone)
+
+
+
+
+  def get_table_data(self):#Pass Table data to table_grid_id
+    print('*access get_table_data')
+    # print('self.children:', self.children
+    print('This should be TableGrid:::', self.table_screen_id.table_grid)
+    self.table_screen_id.table_grid.row_data_list = table_api_util(self.parent.login_token)
+    # print('self.table_screen_id.row_data_list[0]:::',self.table_screen_id.row_data_list[0])
+
+  #TableGrid assign list
+    print('self.table_screen_id.children:::', self.table_screen_id.table_grid)
+    self.table_screen_id.table_grid.build_table()
+    self.table_screen_id.table_grid.rowbox_font_size_util()
 
 
 class ExtraBoxLayout(BoxLayout):

@@ -4,6 +4,7 @@
   md_nav_layout:md_nav_layout
   child_sm:child_sm
   act_screen_id:act_screen_id
+  table_screen_id:table_screen_id
   # canvas_widget:canvas_widget
 
   canvas.before:
@@ -27,11 +28,12 @@
     ScreenManager:
       id: child_sm
       ActivityScreen:
-        name:"act_screen"
         id:act_screen_id
+        name:"act_screen"
         size_hint:1,None
         height:root.height - root.toolbar.size[1]
       TableScreen:
+        id:table_screen_id
         name:"table_screen"
     MDNavigationDrawer:
       id:nav_drawer
@@ -59,15 +61,6 @@
 <ExtraBoxLayout>
   orientation:"vertical"
 
-<TableScreen@Screen>
-  BoxLayout:
-    orientation:"vertical"
-    Label:
-      text:"Table SCreen"
-    Button:
-      text:"Button"
-
-
 
 
 <NavMenu>
@@ -87,5 +80,10 @@
   OneLineListItem:
     text:"View Logged Activties"
     on_press:
+      #root.parent.parent.parent.parent == BaseScreenManager
+      print('root.parent.parent.parent.parent.children:',root.parent.parent.parent.parent.children)
+      ps2=root.parent.parent.parent.parent.children[0]
+      ps2.get_table_data()
       root.parent.parent.parent.child_sm.current="table_screen"
+
   Label:
