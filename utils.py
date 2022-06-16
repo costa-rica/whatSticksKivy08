@@ -74,14 +74,14 @@ def table_api_util(login_token):
   print('url_get_activities:::', url_get_activities)
   response_dict = json.loads(response.text)
 
-  print('response_list:::',type(response_dict['content']))
-  print('response_list:::', response_dict['content'][0])
+  # print('response_list:::',type(response_dict['content']))
+  # print('response_list:::', response_dict['content'][0])
 
   row_data_list=[
     [i[0],convert_datetime(i[1]),i[2], make_date_string(i[1]),h] for h,i in enumerate(response_dict['content'])
     ]
   print('****row_data_list created****')
-  print(row_data_list[0:3])
+  # print(row_data_list[0:3])
   return row_data_list
 
 def convert_datetime(date_time_str):

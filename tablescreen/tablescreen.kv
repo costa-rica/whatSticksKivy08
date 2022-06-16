@@ -4,6 +4,10 @@
   fancy_header:fancy_header
   scrollview:scrollview
   table_grid:table_grid
+
+  nav_top:nav_top
+  nav_middle:nav_middle
+  nav_bottom:nav_bottom
   canvas.before:
     Color:
       rgb: [127/255,160/255,189/255]
@@ -48,18 +52,21 @@
         BoxLayout:
           id:table_nav_box
           orientation:"vertical"
-          size_hint:.2,1
+          size_hint:.13,1
           Button:
             id:nav_top
-            text:"Top of List"
+            text:"Top"
             on_press:scrollview.scroll_y=1
+
           Button:
             id:nav_middle
-            text:"Middle of List"
+            text:"Middle"
+            valign:"middle"
             on_press:scrollview.scroll_y=.5
+
           Button:
             id:nav_bottom
-            text:"Bottom of List"
+            text:"Bottom"
             on_press:scrollview.scroll_y=0
 
 
@@ -74,7 +81,7 @@
     id:id_btn
     text:"ID"
     size_hint:None,1
-    width:root.parent.width*.21
+    width:(root.parent.width*(1-.13))/4
     #if i made this the same width as row boxes then it would match
     #row boxes has padding which makes them a little wider than root.parent.width*.2
     # on_press: root.parent.children[0].children[0].sort_util(self)
@@ -86,19 +93,19 @@
     id:act_btn
     text:"Activity Name"
     size_hint:None,1
-    width:root.parent.width*.21
+    width:(root.parent.width*(1-.13))/4
     on_press: root.parent.parent.children[0].children[1].children[0].sort_util(self)
   Button:
     id:date_btn
     text:"Date/Time"
     size_hint:None,1
-    width:root.parent.width*.21
+    width:(root.parent.width*(1-.13))/4
     on_press: root.parent.parent.children[0].children[1].children[0].sort_util(self)
 
   Button:
     id:delete_column
     size_hint:None,1
-    width:root.parent.width*.21
+    width:(root.parent.width*(1-.13))/4
     on_press:root.parent.parent.children[0].children[1].children[0].sort_util(self)
 
 

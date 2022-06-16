@@ -35,6 +35,8 @@
       TableScreen:
         id:table_screen_id
         name:"table_screen"
+        size_hint:1,None
+        height:root.height - root.toolbar.size[1]
     MDNavigationDrawer:
       id:nav_drawer
       size_hint:.5,None
@@ -80,8 +82,10 @@
   OneLineListItem:
     text:"View Logged Activties"
     on_press:
+      print('+++++View Logged Activites - Table screen accessed')
       #root.parent.parent.parent.parent == BaseScreenManager
-      print('root.parent.parent.parent.parent.children:',root.parent.parent.parent.parent.children)
+      # print('root.parent.parent.parent.parent.children:',root.parent.parent.parent.parent.children)
+
       ps2=root.parent.parent.parent.parent.children[0]
       ps2.get_table_data()
       root.parent.parent.parent.child_sm.current="table_screen"

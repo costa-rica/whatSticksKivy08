@@ -83,7 +83,7 @@ class ParentScreen1(Screen):
 
 
   def show_password(self,toggle_widget):
-    print('toggle_widget:', toggle_widget.state)
+    # print('toggle_widget:', toggle_widget.state)
     if toggle_widget.state=='down':
       self.show_password_toggle.text="Hide password"
       self.md_txt_field_password.password=False

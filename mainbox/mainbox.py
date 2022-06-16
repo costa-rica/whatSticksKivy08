@@ -25,10 +25,10 @@ class MainBoxLayout(BoxLayout):
     print('MainBox on_enter**** Never Shows up right???????')
 
   def submit_btn(self):
-    print('we just submitted some key life changing information.')
-    print('self.parent.parent:', self.parent.parent.parent.parent.parent.parent.parent)
+    # print('we just submitted some key life changing information.')
+    # print('self.parent.parent:', self.parent.parent.parent.parent.parent.parent.parent)
     base_screen = self.parent.parent.parent.parent.parent.parent.parent
-    print('base_screen.login_token:',base_screen.login_token)
+    # print('base_screen.login_token:',base_screen.login_token)
     try:
       # num=int("String")#Create ValueError
       add_activity_util(
@@ -120,8 +120,8 @@ class TextInputAddTime(TextInput):
   def on_focus(instance, instance_twice, value):#I'm not sure why i'm passing instance twice
     print('***TextInputAddDate***')
     box_date =instance.parent.parent#different hiearchey than TextInputDynamicActNote
-    print('main_box:', box_date)
-    print('main_box.children:', box_date.children)
+    # print('main_box:', box_date)
+    # print('main_box.children:', box_date.children)
     if value:
       box_date.time_label.color=(0,0,0,1)
     else:
