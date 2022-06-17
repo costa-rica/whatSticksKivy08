@@ -98,16 +98,9 @@
         id:btn_login
         size_hint:.5,.35
         font_size:root.ps1_base_width* root.text_size_coef
-        text:'Submit'
+        text:'Login'
         md_bg_color:.2,.2,.2,1
         on_press:
-          # print('submit btn font_size:',self.font_size)
-          # print('exit btn font_size:', btn_exit.font_size)
-          # print('md_txt_field_email font_size:', md_txt_field_email.font_size)
-          # print('root.ps1_base_width*.06:', root.ps1_base_width*.06)
-          # print('title font_size:', label_app_name.font_size)
-          # print('root.ps1_base_width * .1:', root.ps1_base_width * .1)
-
           #root.parent is BaseScreenManager
           root.verify_user()
 

@@ -8,6 +8,11 @@ import datetime
 
 base_url = 'https://api.what-sticks-health.com'
 
+font_size_dict = {
+"label_app_name":{"font_size":[.09, .1, 1.1]},
+"md_txt_field_email":{"font_size":[.05,.06,.07]}
+}
+
 
 def text_size_coef_utility(size):
   if size=='small':
