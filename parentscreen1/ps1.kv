@@ -29,22 +29,23 @@
       anchor_x:"center"
       anchor_y:"bottom"
       size_hint:1,None
-      height:root.ps1_base_height * .2
+      #height:root.ps1_base_height * .2###
+      # height:root.ps1_base_height * root.size_dict['anchor_app_name']['height']
 
       Label:
         id: label_app_name
         text:"What Sticks"
         size_hint:None,None
         size:self.texture_size
-        font_size:root.ps1_base_width * .1
+        #font_size:root.ps1_base_width * .1###
 
     AnchorLayout:#App Email
       id:anchor_email
       anchor_x:"left"
       anchor_y:"bottom"
       size_hint:1,None
-      height:root.ps1_base_height * .2
-      padding:root.ps1_base_width * .06,0,root.ps1_base_width * .06,0
+      #height:root.ps1_base_height * .2###
+      #padding:root.ps1_base_width * .06,0,root.ps1_base_width * .06,0###
 
       MDTextField:
         id:md_txt_field_email
@@ -53,15 +54,15 @@
         icon_right_color:.2,.2,.2,1
         current_hint_text_color:.2,.2,.2,1
         text_color:0,0,0,1
-        font_size: root.ps1_base_width * root.text_size_coef
+        #font_size: root.ps1_base_width * root.text_size_coef###
 
     AnchorLayout:#App Password
       id:anchor_password
       anchor_x:"left"
       anchor_y:"top"
       size_hint: 1,None
-      height:root.ps1_base_height * .12
-      padding:root.ps1_base_width * .06,0, root.ps1_base_width * .06,0
+      #height:root.ps1_base_height * .12###
+      #padding:root.ps1_base_width * .06,0, root.ps1_base_width * .06,0###
       # canvas.before:
       #   Color:
       #     rgb: [200/255,100/255,100/255]
@@ -75,29 +76,30 @@
         icon_right_color:.2,.2,.2,1
         current_hint_text_color:.2,.2,.2,1
         text_color:0,0,0,1
-        font_size: root.ps1_base_width * root.text_size_coef
+        #font_size: root.ps1_base_width * root.text_size_coef###
 
 
     AnchorLayout:
+      id:anchor_showpass
       anchor_x:"right"
-      padding:0,0,root.ps1_base_width *.06,0
+      padding:0,0,root.ps1_base_width *.06,0###
       size_hint:1,None
       height:show_password_toggle.height
       ShowPasswordToggle:
         id:show_password_toggle
         text:"Show password"
-        font_size:root.ps1_base_width * root.text_size_coef_sm
+        font_size:root.ps1_base_width * root.text_size_coef_sm###
         on_press: root.show_password(self)
 
 
     AnchorLayout:
       id:anchor_login
       anchor_x:"right"
-      padding: 0,0,root.ps1_base_width * .06, 0
+      padding: 0,0,root.ps1_base_width * .06, 0###
       MDFillRoundFlatButton:
         id:btn_login
         size_hint:.5,.35
-        font_size:root.ps1_base_width* root.text_size_coef
+        font_size:root.ps1_base_width* root.text_size_coef###
         text:'Login'
         md_bg_color:.2,.2,.2,1
         on_press:
@@ -108,12 +110,12 @@
       id:anchor_exit
       anchor_x:"right"
       anchor_y:"top"
-      padding:0,0,root.ps1_base_width*.06,0
+      padding:0,0,root.ps1_base_width*.06,0###
       MDFillRoundFlatButton:
         id:btn_exit
         text:'Exit'
         size_hint:.25,.35
-        font_size:root.ps1_base_width* root.text_size_coef
+        font_size:root.ps1_base_width* root.text_size_coef###
         md_bg_color:.5,.5,.5,1
         on_press:
           app.stop()

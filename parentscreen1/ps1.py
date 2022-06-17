@@ -11,6 +11,8 @@ from kivy.uix.popup import Popup
 
 from mainbox.mainbox import CustomPopup
 
+from size_dict import size_dict
+
 import requests
 import json
 
@@ -26,13 +28,25 @@ class ParentScreen1(Screen):
   ps1_base_height=ObjectProperty(0)
   text_size_coef=ObjectProperty(.06)
   text_size_coef_sm=ObjectProperty(.04)
+
   def __init__(self,**kwargs):
     super().__init__(**kwargs)
     print('ParentScreen1 __init__')
     self.bind(size=self.size_widgets)
     self.call_count=0
+    self.size_dict=size_dict
+    # self.size_dict_new=size_dict_new
+    # print(self.size_dict['anchor_app_name']['height'][2])
+
+  def on_enter(self):
+    print('ParentScreen1 on_enter')
+
+  def on_kv_post(self,*args):
+    print('ParentScreen1 on_kv_post')
+
 
   def size_widgets(self,*args):
+    print('ParentScreen1 size_widgets')
     if self.call_count >0:
       self.ps1_base_width=self.width
       self.ps1_base_height=self.height
@@ -41,6 +55,29 @@ class ParentScreen1(Screen):
       self.md_txt_field_password.text='test'
 
       self.text_size_coef, self.text_size_coef_sm = text_size_coef_utility(size='small')
+
+  #Size widgets based on size_dict parameters
+      self.anchor_app_name.height = self.ps1_base_height * self.size_dict['anchor_app_name']['height'][2]
+      self.label_app_name.font_size = self.ps1_base_width * self.size_dict['label_app_name']['font_size'][2]
+      self.anchor_email.height = self.ps1_base_height * self.size_dict['anchor_email']['height'][2]
+
+      self.anchor_email.padding = (self.ps1_base_width * self.size_dict['anchor_email']['padding-left'][2],0,
+        self.ps1_base_width * self.size_dict['anchor_email']['padding-right'][2],0)
+
+
+
+
+      self.md_txt_field_email.font_size = self.ps1_base_width * self.size_dict['md_txt_field_email']['font_size'][2]
+      self.anchor_password.height = self.ps1_base_height * self.size_dict['anchor_password']['height'][2]
+      self.anchor_password.padding = (self.ps1_base_width * self.size_dict['anchor_password']['padding-left'][2],0,
+        self.ps1_base_width * self.size_dict['anchor_password']['padding-right'][2],0)
+
+
+      self.md_txt_field_password.font_size = self.ps1_base_width * self.size_dict['md_txt_field_password']['font_size'][2]
+      # self.md_txt_field_email.font_size = self.ps1_base_width * self.size_dict['md_txt_field_email']['font_size'][2]
+      # self.md_txt_field_email.font_size = self.ps1_base_width * self.size_dict['md_txt_field_email']['font_size'][2]
+      # self.md_txt_field_email.font_size = self.ps1_base_width * self.size_dict['md_txt_field_email']['font_size'][2]
+      # self.md_txt_field_email.font_size = self.ps1_base_width * self.size_dict['md_txt_field_email']['font_size'][2]
 
     self.call_count+=1
 
