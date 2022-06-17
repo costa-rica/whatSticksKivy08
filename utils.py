@@ -9,8 +9,6 @@ import datetime
 base_url = 'https://api.what-sticks-health.com'
 
 
-
-
 def text_size_coef_utility(size):
   if size=='small':
     text_size_coef=.05

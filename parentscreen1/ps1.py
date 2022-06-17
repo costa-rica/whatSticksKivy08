@@ -71,13 +71,13 @@ class ParentScreen1(Screen):
       self.anchor_password.height = self.ps1_base_height * self.size_dict['anchor_password']['height'][2]
       self.anchor_password.padding = (self.ps1_base_width * self.size_dict['anchor_password']['padding-left'][2],0,
         self.ps1_base_width * self.size_dict['anchor_password']['padding-right'][2],0)
-
-
       self.md_txt_field_password.font_size = self.ps1_base_width * self.size_dict['md_txt_field_password']['font_size'][2]
-      # self.md_txt_field_email.font_size = self.ps1_base_width * self.size_dict['md_txt_field_email']['font_size'][2]
-      # self.md_txt_field_email.font_size = self.ps1_base_width * self.size_dict['md_txt_field_email']['font_size'][2]
-      # self.md_txt_field_email.font_size = self.ps1_base_width * self.size_dict['md_txt_field_email']['font_size'][2]
-      # self.md_txt_field_email.font_size = self.ps1_base_width * self.size_dict['md_txt_field_email']['font_size'][2]
+      self.anchor_showpass.padding = (0,0,self.ps1_base_width * self.size_dict['anchor_showpass']['padding-right'][2],0)
+      self.show_password_toggle.font_size = self.ps1_base_width * self.size_dict['show_password_toggle']['font_size'][2]
+      self.anchor_login.padding = (0,0,self.ps1_base_width * self.size_dict['anchor_login']['padding-right'][2],0)
+      self.btn_login.font_size = self.ps1_base_width * self.size_dict['btn_login']['font_size'][2]
+      self.anchor_exit.padding = (0,0,self.ps1_base_width * self.size_dict['anchor_exit']['padding-right'][2],0)
+      self.btn_exit.font_size = self.ps1_base_width * self.size_dict['btn_exit']['font_size'][2]
 
     self.call_count+=1
 

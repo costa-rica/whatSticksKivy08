@@ -102,6 +102,140 @@ size_dict = {
 			2: 0.06,
 			3: 0.07
 		}
+	},
+
+	"custom_popup": {
+		"title_size": {
+			1: 0.02,
+			2: 0.03,
+			3: 0.04
+		}
+	},
+	"anchor_submit": {
+		"padding-right": {
+			1: 0.05,
+			2: 0.06,
+			3: 0.07
+		}
+	},
+	"btn_login": {
+		"font_size": {
+			1: 0.05,
+			2: 0.06,
+			3: 0.07
+		}
+	},
+	"date_label": {
+		"font_size": {
+			1: 0.05,
+			2: 0.06,
+			3: 0.07
+		}
+	},
+	"time_input": {
+		"font_size": {
+			1: 0.04,
+			2: 0.05,
+			3: 0.06
+		}
+	},
+	"email_label": {
+		"font_size": {
+			1: 0.04,
+			2: 0.05,
+			3: 0.06
+		}
+	},
+	"add_act_name_label": {
+		"font_size": {
+			1: 0.05,
+			2: 0.06,
+			3: 0.07
+		}
+	},
+	"add_act_note_label": {
+		"font_size": {
+			1: 0.05,
+			2: 0.06,
+			3: 0.07
+		}
+	},
+	"txt_input_dy_act_note": {
+		"font_size": {
+			1: 0.04,
+			2: 0.05,
+			3: 0.06
+		}
+	},
+	  "act_screen_screen_name": {
+  	"height": {
+  		1: 0.009,
+  		2: 0.05,
+  		3: 0.011
+  	},
+  	"padding-right": {
+  		1: 0.009,
+  		2: 0.01,
+  		3: 0.011
+  	}
+  },
+  "anchor_date_time": {
+  	"padding-left": {
+  		1: 0.04,
+  		2: 0.05,
+  		3: 0.06
+  	},
+  	"padding-right": {
+  		1: 0.04,
+  		2: 0.05,
+  		3: 0.06
+  	}
+  },
+  "add_act_name": {
+  	"font_size": {
+  		1: 0.04,
+  		2: 0.05,
+  		3: 0.06
+  	},
+  	"height": {
+  		1: 1.9,
+  		2: 2,
+  		3: 2.1
+  	}
+  },
+		"act_name_box": {
+		"height": {
+			1: 0.07,
+			2: 0.08,
+			3: 0.09
+		},
+		"padding-left": {
+			1: 0.04,
+			2: 0.05,
+			3: 0.06
+		},
+		"padding-right": {
+			1: 0.04,
+			2: 0.05,
+			3: 0.06
+		}
+	},
+	"act_note_box": {
+		"height": {
+			1: 0.05,
+			2: 0.06,
+			3: 0.07
+		},
+		"padding-left": {
+			1: 0.04,
+			2: 0.05,
+			3: 0.06
+		},
+		"padding-right": {
+			1: 0.04,
+			2: 0.05,
+			3: 0.06
+		}
 	}
 
 }

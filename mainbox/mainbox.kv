@@ -28,9 +28,9 @@
       #     size: self.size
       AnchorLayoutScreenName:
         id:act_screen_screen_name
-        padding:0,0,root.width*.01,0
-        size_hint: 1,None
-        height: self.email_label.height +root.height*.01
+        #padding:0,0,root.width*.01,0###
+        # size_hint: 1,None
+        #height: self.email_label.height +root.height*.01###
         # canvas.before:
         #   Color:
         #     rgb: [127/255,160/255,100/255]#wshKivy Blue
@@ -40,9 +40,9 @@
 
   BoxLayoutActName:#Add Activity Name InputBox Here
     id: act_name_box
-    padding:root.width*.05,0,root.width*.05,0
+    padding:root.width*.05,0,root.width*.05,0###
     size_hint:1,None
-    height:self.add_act_name_label.height +self.add_act_name.height+root.height*.08
+    height:self.add_act_name_label.height +self.add_act_name.height+root.height*.08###
     # canvas.before:
     #   Color:
     #     rgb: [127/255,160/255,100/255]#wshKivy Blue
@@ -51,14 +51,14 @@
     #     size: self.size
   AnchorLayoutAddActNote:#Add Activity Note Stuff Here
     id:act_note_box
-    padding:root.width*.05,0,root.width*.05,0
+    padding:root.width*.05,0,root.width*.05,0###
     size_hint:1,None
-    height: self.add_act_note_label.height + self.add_act_note.gridlayout_text.height+root.height*.06
+    height: self.add_act_note_label.height + self.add_act_note.gridlayout_text.height+root.height*.06###
     anchor_y:"center"
 
   AnchorLayout:#Date and Time Boxes
     id:anchor_date_time
-    padding:root.width*.05,0,root.width*.05,0
+    padding:root.width*.05,0,root.width*.05,0###
     BoxLayoutDateAndTime:
       id:box_sub_date_time
 
@@ -67,11 +67,11 @@
     anchor_x:"right"
     anchor_y:"center"
     size_hint:1,None
-    padding: 0,0,root.width * .06, 0
+    padding: 0,0,root.width * .06, 0###
     height:root.height-(screen_name_box.height + act_name_box.height +act_note_box.height + anchor_date_time.height)
     MDFillRoundFlatButton:
       id:btn_login
-      font_size:root.width*.06
+      font_size:root.width*.06###
       text:'Submit Activity'
       md_bg_color:.2,.2,.2,1
       on_press:
@@ -115,13 +115,13 @@
       text:"Time"
       size_hint:None,None
       size: self.texture_size
-      font_size:root.width*.06
+      font_size:root.width*.06###
       color:.3,.3,.3,1
     TextInputAddTime:
       id:time_input
       rows:1
       size_hint:1,None
-      font_size:root.width*.05
+      font_size:root.width*.05###
       height:self.line_height
       padding: (2,0,0,0)
       halign:"left"
@@ -154,7 +154,7 @@
     size_hint:None,None
     size: self.texture_size
     color: .2,.2,.2,1
-    font_size:root.width*.05
+    font_size:root.width*.05###
     text:root.email
 
 <BoxLayoutActName@BoxLayout>:#Add Activity Name
@@ -165,15 +165,15 @@
     id:add_act_name_label
     size_hint:None,None
     size: self.texture_size
-    font_size:root.width*.06
+    font_size:root.width*.06###
     color:.3,.3,.3,1
     text:"Add Activity Name"
   TextInputAddName:
     id:add_act_name
     rows:1
     size_hint:1,None
-    font_size:root.width*.05
-    height:self.font_size * 2
+    font_size:root.width*.05###
+    height:self.font_size * 2###
 
 <AnchorLayoutAddActNote@AnchorLayout>:#Box with ActivityNote
   add_act_note_label:add_act_note_label
@@ -187,7 +187,7 @@
       text:"Activity Note"
       size_hint:None,None
       size: self.texture_size
-      font_size: root.width*.06
+      font_size: root.width*.06###
       color:.3,.3,.3,1
     AnchorLayoutActNote:
       id:add_act_note
@@ -219,6 +219,6 @@
     #     size: self.size
     TextInputDynamicActNote:
       id: txt_input_dy_act_note
-      font_size: root.width*.05
+      font_size: root.width*.05###
       size_hint_y: None
       height: (len(txt_input_dy_act_note._lines)+1) * txt_input_dy_act_note.line_height

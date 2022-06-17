@@ -29,13 +29,14 @@ class ParentScreen2(Screen):
 
   def on_size(self,*args):
     print('ParentScreen2 on_size:', self.on_size_count)
+
+  #Set widget sizes
     self.size_hint=None,None
     self.size=(self.parent.ps1_base_width,self.parent.ps1_base_height)
     self.on_size_count+=1
     print('ParentScreen2 size:', self.size)
     print('self.parent.ps1_base_width:',self.parent.ps1_base_width)
     print('self.parent.ps1_base_height:', self.parent.ps1_base_height)
-
 
   def on_enter(self):
     print('ParentScreen2 on_enter')
@@ -46,13 +47,11 @@ class ParentScreen2(Screen):
     extra_box = act_screen.children[0].children[0].children[0]
     date_time_box = main_box.children[1].children[0]
 
-
-
   #Assign MainBox and ExtraBox dimensions AND pass ps1_base dimensions
     main_box.ps1_base_width=self.parent.ps1_base_width
     main_box.ps1_base_height=self.parent.ps1_base_height-self.toolbar.height
-    # print('toolbar height:::', self.toolbar.height)
     main_box.toolbar_height=self.toolbar.height
+    print('main_box.toolbar_height:::', main_box.toolbar_height)
     # main_box.login_token=self.parent.login_token
 
     extra_box.ps1_base_width=self.parent.ps1_base_width
@@ -70,7 +69,6 @@ class ParentScreen2(Screen):
 
 
 
-
   def get_table_data(self):#Pass Table data to table_grid_id
     print('*access get_table_data')
     # print('self.children:', self.children
@@ -81,8 +79,6 @@ class ParentScreen2(Screen):
     print('&&&&& - Assigned ps1_base_width and height to TableGrid here***')
     self.table_screen_id.table_grid.ps1_base_width=self.parent.ps1_base_width
     self.table_screen_id.table_grid.ps1_base_height=self.parent.ps1_base_height
-
-    # print('self.table_screen_id.row_data_list[0]:::',self.table_screen_id.row_data_list[0])
 
   #TableGrid assign list
     print('self.table_screen_id.children:::', self.table_screen_id.table_grid)

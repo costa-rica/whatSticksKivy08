@@ -7,6 +7,8 @@ from utils import add_activity_util
 from kivy.uix.popup import Popup
 from utils import current_time_util
 
+from size_dict import size_dict
+
 Builder.load_file('mainbox/mainbox.kv')
 
 
@@ -20,9 +22,29 @@ class MainBoxLayout(BoxLayout):
   def __init__(self,**kwargs):
     super().__init__(**kwargs)
     print('MainBoxLayout __init__')
+    self.bind(size=self.on_size)
+    self.on_size_count=0
 
   def on_enter(self):#Never shows up
     print('MainBox on_enter**** Never Shows up right???????')
+
+  def on_size(self,*args):
+    print("MainBoxLayout on_size, count: ", self.on_size_count)
+    if self.on_size_count>1:
+      print('self.root.width:::', self.width)
+      print('self.ps1_base_width::', self.ps1_base_width)
+      print('---->two above need to be the same??????')
+      self.act_screen_screen_name.padding=(0,0,
+        self.width*size_dict['act_screen_screen_name']['padding-right'][2],0)
+      self.act_screen_screen_name.size_hint=(1,None)
+      print('self.height:::', self.height)
+      print('self.act_screen_screen_name.email_label.height:::', self.act_screen_screen_name.email_label.height)
+      print('self.toolbar_height:::', self.toolbar_height)
+      self.act_screen_screen_name.height=self.act_screen_screen_name.email_label.height + \
+        self.height * size_dict['act_screen_screen_name']['height'][2]
+
+    self.on_size_count+=1
+
 
   def submit_btn(self):
     # print('we just submitted some key life changing information.')
@@ -45,7 +67,7 @@ class MainBoxLayout(BoxLayout):
         title="Activity Succesfully Added",
         title_color=(127/255,160/255,189/255),
         separator_color=(127/255,160/255,189/255),
-        title_size=self.width*.03
+        title_size=self.width*self.width*size_dict['custom_popup']['title_size'][2]
         )
       custom_popup.bind(on_dismiss=self.clear_screen)
       custom_popup.open()
